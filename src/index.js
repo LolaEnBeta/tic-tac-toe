@@ -15,14 +15,16 @@ function Square(props) {
           super(props);
           this.state = {
               squares: Array(9).fill(null),
+              xIsNext: true,
           };
       }
 
     handleClick(i) {
         const squares = this.state.squares.slice();
-        squares[i] = "X";
+        squares[i] = this.state.xIsNext ? "X" : "O";
         this.setState({
-            squares: squares
+            squares: squares,
+            xIsNext: !this.state.xIsNext,
         });
     }
 
@@ -33,7 +35,7 @@ function Square(props) {
     }
   
     render() {
-      const status = 'Next player: X';
+      const status = 'Next player: ' + (this.state.xIsNext ? "X" : "O");
   
       return (
         <div>
